@@ -19,6 +19,7 @@ dependencies:
   hugeicons: ^0.0.11
   google_fonts: ^6.2.1
   responsive_grid: ^2.4.4
+  flutter_bloc: ^9.0.0
 
 dev_dependencies:
   flutter_test:

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 /* REUSABLE COMPONENT IMPORT */
 import 'package:untitled/reusable_component/global/header.component.dart';
+import 'package:untitled/reusable_component/global/main_body.component.dart';
 import 'package:untitled/reusable_component/global/navigate_back.component.dart';
 
 class BigHeaderComponent extends StatelessWidget {
@@ -21,22 +22,24 @@ class BigHeaderComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        HeaderComponent(
-          onChanged: onChanged,
-          controller: controller,
-        ),
-        const SizedBox(height: 10),
-        const Divider(color: Colors.grey),
-        NavigateBackComponent(
-          name: navName,
-          onTap: onTapNav,
-        ),
-        const SizedBox(height: 6),
-        body
-      ],
+    return MainBodyComponent(
+      body: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          HeaderComponent(
+            onChanged: onChanged,
+            controller: controller,
+          ),
+          const SizedBox(height: 10),
+          const Divider(color: Colors.grey),
+          NavigateBackComponent(
+            name: navName,
+            onTap: onTapNav,
+          ),
+          const SizedBox(height: 6),
+          body
+        ],
+      ),
     );
   }
 }

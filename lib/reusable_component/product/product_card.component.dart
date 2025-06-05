@@ -3,12 +3,12 @@ import 'package:google_fonts/google_fonts.dart';
 /* CONSTANT IMPORT */
 import 'package:untitled/constant.dart';
 /* MODEL IMPORT */
-import 'package:untitled/models/content/content.model.dart';
+import 'package:untitled/models/product/product.model.dart';
 
-class ContentCardComponent extends StatelessWidget {
-  const ContentCardComponent({super.key, required this.content});
+class ProductCardComponent extends StatelessWidget {
+  const ProductCardComponent({super.key, required this.product});
 
-  final ContentModel content;
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
@@ -22,19 +22,26 @@ class ContentCardComponent extends StatelessWidget {
             color: lightGreyLike,
             borderRadius: BorderRadius.circular(7.0),
           ),
+          child: Center(
+            child: Image.asset(
+              product.image,
+              width: 120,
+              height: 120,
+            ),
+          ),
         ),
         const SizedBox(height: 7),
         Text(
-          content.name,
+          product.name,
           style: GoogleFonts.ibmPlexSans(fontSize: 14),
         ),
         Text(
-          "${content.size}|${content.color}",
+          "${product.size}|${product.color}",
           style: GoogleFonts.ibmPlexSans(fontSize: 14),
         ),
         const SizedBox(height: 9),
         Text(
-          "\$${content.amount}",
+          "\$${product.amount}",
           style: GoogleFonts.ibmPlexSans(
             fontSize: 16,
             fontWeight: FontWeight.bold,

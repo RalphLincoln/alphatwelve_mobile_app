@@ -20,7 +20,6 @@ class MainBodyComponent extends StatelessWidget {
       key: sKey,
       body: SafeArea(
         top: safeTop,
-        bottom: false,
         child: body,
       ),
       drawer: drawer,

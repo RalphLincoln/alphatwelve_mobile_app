@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-class ContentModel extends Equatable {
+class ProductModel extends Equatable {
   final String id;
   final String name;
   final String size;
@@ -8,7 +8,7 @@ class ContentModel extends Equatable {
   final String color;
   final double amount;
 
-  const ContentModel({
+  const ProductModel({
     required this.id,
     required this.name,
     required this.size,
@@ -17,7 +17,7 @@ class ContentModel extends Equatable {
     required this.amount,
   });
 
-  factory ContentModel.fromJson(Map<String, dynamic> data) {
+  factory ProductModel.fromJson(Map<String, dynamic> data) {
     final id = data["id"] as String;
     final name = data["name"] as String;
     final size = data["size"] as String;
@@ -25,7 +25,7 @@ class ContentModel extends Equatable {
     final color = data["color"] as String;
     final amount = data["amount"] as double;
 
-    return ContentModel(
+    return ProductModel(
       id: id,
       name: name,
       size: size,

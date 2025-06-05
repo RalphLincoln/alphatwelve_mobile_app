@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hugeicons/hugeicons.dart';
 /* TAB IMPORT */
 import 'package:untitled/tabscreens/home.tab.dart';
 import 'package:untitled/tabscreens/cart.tab.dart';
@@ -6,8 +7,6 @@ import 'package:untitled/tabscreens/profile.tab.dart';
 import 'package:untitled/tabscreens/favorites.tab.dart';
 /* MODEL IMPORT */
 import 'package:untitled/models/bottom_navigation/tab_bar_item.model.dart';
-/* REUSABLE COMPONENT IMPORT */
-import 'package:untitled/reusable_component/global/display_svg.component.dart';
 /* REUSABLE BOTTOM NAVIGATION IMPORT */
 import 'package:untitled/reusable_component/bottom_navigation/navbar_item.component.dart';
 
@@ -52,38 +51,22 @@ class _CenterScreenState extends State<CenterScreen> with SingleTickerProviderSt
     List<TabBarItemModel> tabBarItems = [
       const TabBarItemModel(
         name: "Home",
-        icon: DisplaySVGComponent(
-          height: 22,
-          width: 22,
-          icon: "assets/svg/home.svg",
-        ),
+        icon: HugeIcons.strokeRoundedHome07,
         id: 0,
       ),
       const TabBarItemModel(
         name: "Cart",
-        icon: DisplaySVGComponent(
-          height: 22,
-          width: 22,
-          icon: "assets/svg/shopping-cart.svg",
-        ),
+        icon: HugeIcons.strokeRoundedShoppingCart01,
         id: 1,
       ),
       const TabBarItemModel(
         name: "Favorites",
-        icon: DisplaySVGComponent(
-          height: 22,
-          width: 22,
-          icon: "assets/svg/favourite.svg",
-        ),
+        icon: HugeIcons.strokeRoundedFavourite,
         id: 2,
       ),
       const TabBarItemModel(
         name: "Profile",
-        icon: DisplaySVGComponent(
-          height: 22,
-          width: 22,
-          icon: "assets/svg/user-circle.svg",
-        ),
+        icon: HugeIcons.strokeRoundedUserCircle,
         id: 3,
       ),
     ];
@@ -106,7 +89,7 @@ class _CenterScreenState extends State<CenterScreen> with SingleTickerProviderSt
         offset: Offset(0, 100 * animation.value),
         child: SafeArea(
           child: Container(
-            height: 66,
+            height: 76,
             padding: const EdgeInsets.all(8),
             decoration: const BoxDecoration(
               color: Colors.white,

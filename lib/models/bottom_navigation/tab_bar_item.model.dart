@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 class TabBarItemModel extends Equatable {
   final int id;
   final String name;
-  final Widget icon;
+  final IconData icon;
 
   const TabBarItemModel({
     required this.id,

@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hugeicons/hugeicons.dart';
+import 'package:google_fonts/google_fonts.dart';
+/* CONSTANTS IMPORT */
+import 'package:untitled/constant.dart';
+/* REUSABLE BOTTOM NAVIGATION IMPORT */
+import 'package:untitled/reusable_component/bottom_navigation/animated_bar.component.dart';
 
 class NavbarItemComponent extends StatelessWidget {
   const NavbarItemComponent({
@@ -11,7 +17,7 @@ class NavbarItemComponent extends StatelessWidget {
 
   final bool isSelected;
   final String navbarItemName;
-  final Widget navbarItemIcon;
+  final IconData navbarItemIcon;
   final VoidCallback onTapClick;
 
   @override
@@ -21,13 +27,19 @@ class NavbarItemComponent extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          navbarItemIcon,
+          AnimatedBarComponent(isActive: isSelected),
+          const SizedBox(height: 5),
+          HugeIcon(
+            icon: navbarItemIcon,
+            color: isSelected ? lightBlueLike : greyLike,
+          ),
+          const SizedBox(height: 6),
           Text(
             navbarItemName,
-            style: TextStyle(
-              color: isSelected ? const Color(0xFF60B5FF) : Colors.black,
-              fontSize: 10,
-              fontFamily: "Poppins-Regular",
+            style: GoogleFonts.ibmPlexSans(
+              color: isSelected ? lightBlueLike : greyLike,
+              fontSize: 11,
+              fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
             ),
           ),
         ],

@@ -6,10 +6,14 @@ import 'package:responsive_grid/responsive_grid.dart';
 import 'package:untitled/constant.dart';
 /* MODEL IMPORT */
 import 'package:untitled/models/content/content.model.dart';
+import 'package:untitled/reusable_component/global/big_header.component.dart';
+/* SUPPORT SCREEN IMPORT */
+import 'package:untitled/support_screen/content_description.screen.dart';
 /* REUSABLE COMPONENT IMPORT */
 import 'package:untitled/reusable_component/global/header.component.dart';
-import 'package:untitled/reusable_component/global/content_card.component.dart';
 import 'package:untitled/reusable_component/global/navigate_back.component.dart';
+/* REUSABLE CONTENT COMPONENT IMPORT */
+import 'package:untitled/reusable_component/content/content_card.component.dart';
 
 class HomeTab extends StatefulWidget {
   const HomeTab({super.key});
@@ -30,7 +34,7 @@ class _HomeTabState extends State<HomeTab> {
         size: "128GB",
         image: "",
         color: "Teal",
-        amount: "700.00",
+        amount: 700.00,
       ),
       const ContentModel(
         id: "2",
@@ -38,7 +42,7 @@ class _HomeTabState extends State<HomeTab> {
         size: "256GB",
         image: "",
         color: "Sky blue",
-        amount: "1000.00",
+        amount: 1000.00,
       ),
       const ContentModel(
         id: "3",
@@ -46,7 +50,7 @@ class _HomeTabState extends State<HomeTab> {
         size: "128GB",
         image: "",
         color: "Iris",
-        amount: "499.00",
+        amount: 499.00,
       ),
       const ContentModel(
         id: "4",
@@ -54,71 +58,66 @@ class _HomeTabState extends State<HomeTab> {
         size: "128GB",
         image: "",
         color: "Teal",
-        amount: "700.00",
+        amount: 700.00,
       ),
     ];
 
     return SafeArea(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          HeaderComponent(
-            controller: _searchController,
-          ),
-          const SizedBox(height: 10),
-          const Divider(color: Colors.grey),
-          NavigateBackComponent(
-            name: "Technology",
-            onTap: () {},
-          ),
-          const SizedBox(height: 6),
-          Expanded(
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              padding: const EdgeInsets.symmetric(
-                vertical: 12,
-                horizontal: 18,
-              ),
-              decoration: const BoxDecoration(
-                color: miniWhite,
-                border: Border(
-                  top: BorderSide(
-                    color: lightGreyLike,
-                    width: 1.0,
-                  ),
-                ),
-              ),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Text(
-                      "Smartphones, Laptops & Accessories",
-                      style: GoogleFonts.ibmPlexMono(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    ResponsiveGridList(
-                      scroll: false,
-                      minSpacing: 10,
-                      desiredItemWidth: 150,
-                      children: List.generate(
-                        cleanContent.length,
-                        (i) {
-                          var content = cleanContent[i];
-                          return GestureDetector(
-                            onTap: () {},
-                            child: ContentCardComponent(content: content),
-                          );
-                        },
-                      ),
-                    )
-                  ],
+      child: BigHeaderComponent(
+        navName: "Technology",
+        onTapNav: () {},
+        controller: _searchController,
+        body: Expanded(
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            padding: const EdgeInsets.symmetric(
+              vertical: 12,
+              horizontal: 18,
+            ),
+            decoration: const BoxDecoration(
+              color: miniWhite,
+              border: Border(
+                top: BorderSide(
+                  color: lightGreyLike,
+                  width: 1.0,
                 ),
               ),
             ),
-          )
-        ],
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Text(
+                    "Smartphones, Laptops & Accessories",
+                    style: GoogleFonts.ibmPlexMono(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  ResponsiveGridList(
+                    scroll: false,
+                    minSpacing: 10,
+                    desiredItemWidth: 150,
+                    children: List.generate(
+                      cleanContent.length,
+                      (i) {
+                        var content = cleanContent[i];
+                        return GestureDetector(
+                          behavior: HitTestBehavior.opaque,
+                          onTap: () => Get.to(
+                            () => ContentDescriptionScreen(content: content),
+                            transition: transition,
+                            duration: const Duration(milliseconds: 900),
+                          ),
+                          child: ContentCardComponent(content: content),
+                        );
+                      },
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }

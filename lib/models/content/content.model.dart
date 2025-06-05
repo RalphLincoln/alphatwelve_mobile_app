@@ -6,7 +6,7 @@ class ContentModel extends Equatable {
   final String size;
   final String image;
   final String color;
-  final String amount;
+  final double amount;
 
   const ContentModel({
     required this.id,
@@ -23,7 +23,7 @@ class ContentModel extends Equatable {
     final size = data["size"] as String;
     final image = data["image"] as String;
     final color = data["color"] as String;
-    final amount = data["amount"] as String;
+    final amount = data["amount"] as double;
 
     return ContentModel(
       id: id,

@@ -16,8 +16,8 @@ class ContentCardComponent extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          height: 180,
           width: 160,
+          height: 180,
           decoration: BoxDecoration(
             color: lightGreyLike,
             borderRadius: BorderRadius.circular(7.0),

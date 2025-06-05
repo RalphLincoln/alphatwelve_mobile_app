@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:untitled/constant.dart';
 /* TAB IMPORT */
 import 'package:untitled/tabscreens/home.tab.dart';
 import 'package:untitled/tabscreens/cart.tab.dart';
@@ -79,12 +80,7 @@ class _CenterScreenState extends State<CenterScreen> with SingleTickerProviderSt
     ];
 
     return Scaffold(
-      body: SafeArea(
-        bottom: false,
-        left: false,
-        right: false,
-        child: tabs.elementAt(_currentIndex),
-      ),
+      body: tabs.elementAt(_currentIndex),
       bottomNavigationBar: Transform.translate(
         offset: Offset(0, 100 * animation.value),
         child: SafeArea(

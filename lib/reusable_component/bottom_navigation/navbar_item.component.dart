@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:google_fonts/google_fonts.dart';
 /* CONSTANTS IMPORT */
 import 'package:untitled/constant.dart';
+/* PROVIDER IMPORT */
+import 'package:untitled/provider/cart.provider.dart';
 /* REUSABLE BOTTOM NAVIGATION IMPORT */
 import 'package:untitled/reusable_component/bottom_navigation/animated_bar.component.dart';
 
@@ -24,6 +27,8 @@ class NavbarItemComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cartProvider = Provider.of<CartProvider>(context, listen: false);
+
     return GestureDetector(
       onTap: onTapClick,
       child: Column(
@@ -37,6 +42,26 @@ class NavbarItemComponent extends StatelessWidget {
                     HugeIcon(
                       icon: navbarItemIcon,
                       color: isSelected ? lightBlueLike : greyLike,
+                    ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 2,
+                        horizontal: 4,
+                      ),
+                      decoration: BoxDecoration(
+                        color: lightBlueLike,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "${cartProvider.carts.length}",
+                          style: GoogleFonts.ibmPlexSans(
+                            color: Colors.white,
+                            fontSize: 8,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
                     )
                   ],
                 )

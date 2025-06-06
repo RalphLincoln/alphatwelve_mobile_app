@@ -9,12 +9,14 @@ import 'package:untitled/reusable_component/bottom_navigation/animated_bar.compo
 class NavbarItemComponent extends StatelessWidget {
   const NavbarItemComponent({
     super.key,
+    required this.index,
     required this.navbarItemName,
     required this.navbarItemIcon,
     required this.isSelected,
     required this.onTapClick,
   });
 
+  final int index;
   final bool isSelected;
   final String navbarItemName;
   final IconData navbarItemIcon;
@@ -29,10 +31,19 @@ class NavbarItemComponent extends StatelessWidget {
         children: [
           AnimatedBarComponent(isActive: isSelected),
           const SizedBox(height: 5),
-          HugeIcon(
-            icon: navbarItemIcon,
-            color: isSelected ? lightBlueLike : greyLike,
-          ),
+          index == 1
+              ? Stack(
+                  children: [
+                    HugeIcon(
+                      icon: navbarItemIcon,
+                      color: isSelected ? lightBlueLike : greyLike,
+                    )
+                  ],
+                )
+              : HugeIcon(
+                  icon: navbarItemIcon,
+                  color: isSelected ? lightBlueLike : greyLike,
+                ),
           const SizedBox(height: 6),
           Text(
             navbarItemName,

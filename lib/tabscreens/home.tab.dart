@@ -58,6 +58,14 @@ class _HomeTabState extends State<HomeTab> {
         color: "Teal",
         amount: 700.00,
       ),
+      const ProductModel(
+        id: "5",
+        name: "Samsung S25",
+        size: "128GB",
+        image: "assets/image/samsung_s25.webp",
+        color: "Teal",
+        amount: 700.00,
+      ),
     ];
 
     return BigHeaderComponent(

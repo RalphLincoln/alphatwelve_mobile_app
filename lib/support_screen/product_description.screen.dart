@@ -1,9 +1,14 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:google_fonts/google_fonts.dart';
 /* CONSTANT IMPORT */
 import 'package:untitled/constant.dart';
+/* CUSTOM FUNCTION IMPORT */
+import 'package:untitled/function.dart';
+/* PROVIDER IMPORT */
+import 'package:untitled/provider/cart.provider.dart';
 /* SUPPORT SCREEN IMPORT */
 import 'package:untitled/support_screen/cart.screen.dart';
 /* MODEL IMPORT */
@@ -19,6 +24,18 @@ class ProductDescriptionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void addToCart({required ProductModel product}) {
+      final cartProvider = Provider.of<CartProvider>(context, listen: false);
+
+      cartProvider.addToCart(product: product);
+
+      Get.to(
+        () => const CartScreen(),
+        transition: transition,
+        duration: const Duration(milliseconds: 900),
+      );
+    }
+
     return BigHeaderComponent(
       navName: "Go back",
       onTapNav: () => Get.back(),
@@ -126,11 +143,7 @@ class ProductDescriptionScreen extends StatelessWidget {
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    onTap: () => Get.to(
-                      () => const CartScreen(),
-                      transition: transition,
-                      duration: const Duration(milliseconds: 900),
-                    ),
+                    onTap: () => addToCart(product: product),
                   )
                 ],
               )

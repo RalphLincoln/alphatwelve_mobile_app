@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:google_fonts/google_fonts.dart';
 /* CONSTANT IMPORT */
 import 'package:untitled/constant.dart';
+/* CUSTOM FUNCTION IMPORT */
+import 'package:untitled/function.dart';
+/* PROVIDER IMPORT */
+import 'package:untitled/provider/cart.provider.dart';
 /* MODEL IMPORT */
 import 'package:untitled/models/cart/cart.model.dart';
 
@@ -13,6 +18,24 @@ class CartItemComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void increaseItemCount() {
+      final cartProvider = Provider.of<CartProvider>(context, listen: false);
+
+      cartProvider.increaseProductInCart(productID: cart.product.id);
+    }
+
+    void decreaseItemCount() {
+      final cartProvider = Provider.of<CartProvider>(context, listen: false);
+
+      cartProvider.decreaseProductInCart(productID: cart.product.id);
+    }
+
+    void removeItemFromCart() {
+      final cartProvider = Provider.of<CartProvider>(context, listen: false);
+
+      cartProvider.removeProductFromCart(productID: cart.product.id);
+    }
+
     return Column(
       children: [
         Container(
@@ -36,12 +59,14 @@ class CartItemComponent extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    cart.product.name,
+                    trimText(cart.product.name, maxLength: 36),
                     style: GoogleFonts.ibmPlexSans(
                       color: greyLike,
                       fontSize: 12,
                       fontWeight: FontWeight.w400,
                     ),
+                    softWrap: true,
+                    maxLines: 2,
                   ),
                   const SizedBox(height: 3),
                   Text(
@@ -67,7 +92,7 @@ class CartItemComponent extends StatelessWidget {
                       Row(
                         children: [
                           IconButton(
-                            onPressed: () {},
+                            onPressed: () => decreaseItemCount(),
                             icon: const HugeIcon(
                               icon: HugeIcons.strokeRoundedMinusSign,
                               color: greyLike,
@@ -79,7 +104,7 @@ class CartItemComponent extends StatelessWidget {
                           ),
                           const SizedBox(width: 15),
                           Text(
-                            "1",
+                            "${cart.quantity}",
                             style: GoogleFonts.ibmPlexSans(
                               color: greyLike,
                               fontSize: 12,
@@ -88,7 +113,7 @@ class CartItemComponent extends StatelessWidget {
                           ),
                           const SizedBox(width: 15),
                           IconButton(
-                            onPressed: () {},
+                            onPressed: () => increaseItemCount(),
                             icon: const HugeIcon(
                               icon: HugeIcons.strokeRoundedPlusSign,
                               color: greyLike,
@@ -102,7 +127,7 @@ class CartItemComponent extends StatelessWidget {
                       ),
                       const SizedBox(width: 30),
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () => removeItemFromCart(),
                         icon: const HugeIcon(
                           icon: HugeIcons.strokeRoundedDelete02,
                           color: greyLike,

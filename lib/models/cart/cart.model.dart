@@ -20,6 +20,15 @@ class CartModel extends Equatable {
     );
   }
 
+  // Add to your existing CartModel class
+  CartModel increment(int value) {
+    return copyWith(quantity: quantity + value);
+  }
+
+  CartModel decrement(int value) {
+    return copyWith(quantity: quantity - value);
+  }
+
   @override
   List<Object?> get props => [product, quantity];
 }

@@ -1,10 +1,18 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 /* CENTER SCREEN IMPORT */
 import 'package:untitled/center.screen.dart';
+/* PROVIDER IMPORT */
+import 'package:untitled/provider/cart.provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => CartProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

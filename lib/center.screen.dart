@@ -98,6 +98,7 @@ class _CenterScreenState extends State<CenterScreen> with SingleTickerProviderSt
                 children: List.generate(
                   tabBarItems.length,
                   (index) => NavbarItemComponent(
+                    index: index,
                     navbarItemName: tabBarItems[index].name,
                     navbarItemIcon: tabBarItems[index].icon,
                     isSelected: _currentIndex == tabBarItems[index].id,

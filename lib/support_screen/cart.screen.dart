@@ -1,8 +1,11 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 /* CONSTANT IMPORT */
 import 'package:untitled/constant.dart';
+/* PROVIDER IMPORT */
+import 'package:untitled/provider/cart.provider.dart';
 /* MODEL IMPORT */
 import 'package:untitled/models/cart/cart.model.dart';
 import 'package:untitled/models/product/product.model.dart';
@@ -18,30 +21,8 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<CartModel> cleanCart = [
-      const CartModel(
-        product: ProductModel(
-          id: "1",
-          name: "Apple iPhone 16",
-          size: "128GB",
-          image: "assets/image/iphone16.jpg",
-          color: "Teal",
-          amount: 700.00,
-        ),
-        quantity: 1,
-      ),
-      const CartModel(
-        product: ProductModel(
-          id: "2",
-          name: "M4 Macbook Air 13",
-          size: "256GB",
-          image: "assets/image/macbook-air-13.png",
-          color: "Sky blue",
-          amount: 1000.00,
-        ),
-        quantity: 1,
-      ),
-    ];
+    final cartProvider = context.watch<CartProvider>();
+
     return BigHeaderComponent(
       navName: "Your Cart",
       onTapNav: () => Get.back(),
@@ -78,9 +59,9 @@ class CartScreen extends StatelessWidget {
                       ),
                       child: Column(
                         children: List.generate(
-                          cleanCart.length,
+                          cartProvider.carts.length,
                           (i) {
-                            var cart = cleanCart[i];
+                            var cart = cartProvider.carts[i];
                             return Padding(
                               padding: const EdgeInsets.symmetric(vertical: 10),
                               child: CartItemComponent(cart: cart),
@@ -107,15 +88,27 @@ class CartScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 12),
-                  const PriceRowListComponent(title: "Subtotal", amount: "2100", isTotalAmount: false),
+                  PriceRowListComponent(
+                    title: "Subtotal",
+                    amount: cartProvider.totalPrice.toString(),
+                    isTotalAmount: false,
+                  ),
                   const SizedBox(height: 10),
-                  const PriceRowListComponent(title: "Shipping", amount: "10", isTotalAmount: false),
+                  PriceRowListComponent(
+                    title: "Shipping",
+                    amount: cartProvider.shipping.toString(),
+                    isTotalAmount: false,
+                  ),
                   const SizedBox(height: 12),
-                  const PriceRowListComponent(title: "Total", amount: "2110", isTotalAmount: true),
+                  PriceRowListComponent(
+                    title: "Total",
+                    amount: cartProvider.grossPrice.toString(),
+                    isTotalAmount: true,
+                  ),
                   const SizedBox(height: 20),
                   CustomButtonComponent(
                     child: Text(
-                      "Checkout (\$2110)",
+                      "Checkout (\$${cartProvider.grossPrice})",
                       style: GoogleFonts.ibmPlexSans(
                         color: Colors.white,
                         fontSize: 14,

@@ -29,7 +29,7 @@ class ProductDescriptionScreen extends StatelessWidget {
 
       cartProvider.addToCart(product: product);
 
-      showCustomSnackbar(title: "", message: "Item added to cart");
+      showCustomSnackbar(title: "Add To Cart", message: "Item added to cart");
     }
 
     return BigHeaderComponent(

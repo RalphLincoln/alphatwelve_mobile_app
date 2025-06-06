@@ -46,32 +46,32 @@ class CartTab extends StatelessWidget {
                   ),
                 ),
               ),
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      color: miniWhite,
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 12,
-                        horizontal: 15,
-                      ),
-                      child: Column(
-                        children: List.generate(
-                          cartProvider.carts.length,
-                          (i) {
-                            var cart = cartProvider.carts[i];
-                            return Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 10),
-                              child: CartItemComponent(cart: cart),
-                            );
-                          },
-                        ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height * 0.439,
+                    color: miniWhite,
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 12,
+                      horizontal: 15,
+                    ),
+                    child: ListView(
+                      shrinkWrap: true,
+                      children: List.generate(
+                        cartProvider.carts.length,
+                        (i) {
+                          var cart = cartProvider.carts[i];
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            child: CartItemComponent(cart: cart),
+                          );
+                        },
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
             Padding(

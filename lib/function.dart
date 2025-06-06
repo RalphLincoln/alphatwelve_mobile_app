@@ -10,8 +10,8 @@ void showCustomSnackbar({
   Duration duration = const Duration(seconds: 3),
 }) {
   Get.snackbar(
-    "",
-    "",
+    "", // Keep empty if using titleText
+    "", // Keep empty if using messageText
     backgroundColor: Colors.white,
     colorText: Colors.black,
     duration: duration,
@@ -27,18 +27,29 @@ void showCustomSnackbar({
       ),
     ],
     titleText: Text(
+      // This will override the first empty string
       title,
-      style: GoogleFonts.ibmPlexSans(color: Colors.black, fontSize: 12),
+      style: GoogleFonts.ibmPlexSans(
+        color: Colors.black,
+        fontSize: 12,
+        fontWeight: FontWeight.bold, // Added for better visibility
+      ),
     ),
     messageText: Text(
+      // This will override the second empty string
       message,
-      style: GoogleFonts.ibmPlexSans(fontSize: 14),
+      style: GoogleFonts.ibmPlexSans(
+        color: Colors.black,
+        fontSize: 14,
+      ),
     ),
     leftBarIndicatorColor: leftBarColor,
     icon: const HugeIcon(
       icon: HugeIcons.strokeRoundedCheckmarkCircle02,
       color: Colors.green,
-    ), // Optional icon
+      size: 24, // Specify size
+    ),
+    padding: const EdgeInsets.all(16), // Add internal padding
   );
 }
 

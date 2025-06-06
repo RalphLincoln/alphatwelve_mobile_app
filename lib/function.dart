@@ -1,16 +1,17 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hugeicons/hugeicons.dart';
 
 void showCustomSnackbar({
   required String title,
   required String message,
-  Color leftBarColor = Colors.green, // Default green border
+  Color leftBarColor = Colors.green,
   Duration duration = const Duration(seconds: 3),
 }) {
   Get.snackbar(
-    title,
-    message,
+    "",
+    "",
     backgroundColor: Colors.white,
     colorText: Colors.black,
     duration: duration,
@@ -25,7 +26,15 @@ void showCustomSnackbar({
         blurRadius: 5,
       ),
     ],
-    leftBarIndicatorColor: leftBarColor, // Green left border
+    titleText: Text(
+      title,
+      style: GoogleFonts.ibmPlexSans(color: Colors.black, fontSize: 12),
+    ),
+    messageText: Text(
+      message,
+      style: GoogleFonts.ibmPlexSans(fontSize: 14),
+    ),
+    leftBarIndicatorColor: leftBarColor,
     icon: const HugeIcon(
       icon: HugeIcons.strokeRoundedCheckmarkCircle02,
       color: Colors.green,

@@ -29,11 +29,7 @@ class ProductDescriptionScreen extends StatelessWidget {
 
       cartProvider.addToCart(product: product);
 
-      Get.to(
-        () => const CartScreen(),
-        transition: transition,
-        duration: const Duration(milliseconds: 900),
-      );
+      showCustomSnackbar(title: "", message: "Item added to cart");
     }
 
     return BigHeaderComponent(

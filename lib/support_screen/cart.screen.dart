@@ -115,11 +115,7 @@ class CartScreen extends StatelessWidget {
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    onTap: () => Get.to(
-                      () => const CartScreen(),
-                      transition: transition,
-                      duration: const Duration(milliseconds: 900),
-                    ),
+                    onTap: () {},
                   )
                 ],
               ),
